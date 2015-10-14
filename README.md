@@ -1,6 +1,3 @@
-http://bubkoo.com/2015/04/05/javascript-style-guide/?utm_source=tuicool
-https://github.com/gf-rd/es6-coding-style#%E5%A3%B0%E6%98%8E
-
 
 # JavaScript 规范（ES6新增）
 Airbnb 的 ES5 规范写的非常好，现在添加了 ES6 的部分，可以借鉴使用。
@@ -804,3 +801,8 @@ function getProp(prop) {
  
 var isJedi = getProp('jedi');
 ```
+
+参考：
+http://bubkoo.com/2015/04/05/javascript-style-guide/?utm_source=tuicool
+
+https://github.com/gf-rd/es6-coding-style#%E5%A3%B0%E6%98%8E
