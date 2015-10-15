@@ -10,8 +10,7 @@
 * 七、对象
 * 八、类
 * 九、模块
-* 十、Iterators 和 Generators(不推荐)
-* 十一、属性访问
+* 十、属性访问
 
 ## 一、类型规范
 > 对于常量或不修改的变量声明使用const，对于只在当前作用域下有效的变量，应使用let，全局变量使用var。将所有 const 变量放在一起，然后将所有 let 变量放在一起
@@ -43,19 +42,6 @@ console.log(b); // ReferenceError
 ## 二、字符串
 > 使用单引号 '
 
-```
-// bad
-var name = "Bob Parr";
- 
-// good
-var name = 'Bob Parr';
- 
-// bad
-var fullName = "Bob " + this.lastName;
- 
-// good
-var fullName = 'Bob ' + this.lastName;
-```
 超过80个字符的字符串应该使用字符串连接换行
 注：如果过度使用长字符串连接可能会对性能有影响。jsPerf & Discussion
 
@@ -66,8 +52,6 @@ var errorMessage = 'This is a super long error that was thrown because of Batman
 // bad
 var errorMessage = 'This is a super long error that \
 was thrown because of Batman. \
-When you stop to think about \
-how Batman had anything to do \
 with this, you would get nowhere \
 fast.';
  
@@ -75,8 +59,6 @@ fast.';
 // good
 var errorMessage = 'This is a super long error that ' +
   'was thrown because of Batman.' +
-  'When you stop to think about ' +
-  'how Batman had anything to do ' +
   'with this, you would get nowhere ' +
   'fast.';
 ```
@@ -101,26 +83,7 @@ function sayHi(name) {
 }
 ```
 ## 三、数组类型
-> 使用字面量语法创建数组
 
-```
-// bad
-const items = new Array();
- 
-// good
-const items = [];
-```
-> 如果你不知道数组的长度，使用 push
-
-```
-const someStack = [];
- 
-// bad
-someStack[someStack.length] = 'abracadabra';
- 
-// good
-someStack.push('abracadabra');
-```
 > 使用 ... 来拷贝数组，不要使用 Array.from、Array.of等数组的新的内置API，因为Babel不容易兼容
 
 ```
@@ -294,39 +257,8 @@ function processInput(input) {
 ```
 
 ## 五、函数
->使用函数声明而不是函数表达式
 
-函数声明拥有函数名，在调用栈中更加容易识别。并且，函数声明会整体提升，而函数表达式只会提升变量本身。这条规则也可以这样描述，始终使用箭头函数来代替函数表达式。
-
-```
-// bad
-const foo = function () {
-};
- 
-// good
-function foo() {
-}
-
-```
-绝对不要在一个非函数块（if，while，等等）里声明一个函数，把那个函数赋给一个变量。浏览器允许你这么做，但是它们解析不同
-注：ECMA-262 把 块 定义为一组语句，函数声明不是一个语句。阅读 ECMA-262 对这个问题的说明
-
-```
-// bad
-if (currentUser) {
-  function test() {
-    console.log('Nope.');
-  }
-}
- 
-// good
-if (currentUser) {
-  var test = function test() {
-    console.log('Yup.');
-  };
-}
-```
-> 绝对不要把参数命名为 arguments, 这将会覆盖函数作用域内传过来的 arguments 对象
+> 不要把参数命名为 arguments, 这将会覆盖函数作用域内传过来的 arguments 对象
 
 ```
 // bad
@@ -411,34 +343,6 @@ var fn= (v=>console.log(v));
 ```
 
 ## 七、对象
-
-> 使用对象字面量创建对象
-
-
-```
-// bad
-var item = new Object();
- 
-// good
-var item = {};
-```
-> 不要使用保留字（reserved words）作为键，否则在 IE8 下将出错
-
-```
-// bad
-var superman = {
-  class: 'superhero',
-  default: { clark: 'kent' },
-  private: true
-};
- 
-// good
-var superman = {
-  klass: 'superhero',
-  defaults: { clark: 'kent' },
-  hidden: true
-};
-```
 
 > 创建对象时使用计算的属性名，而不要在创建对象后使用对象的动态特性，这样可以在同一个位置定义对象的所有属性。
 
@@ -759,31 +663,8 @@ const AirbnbStyleGuide = {
  
 export default AirbnbStyleGuide;
 ```
-## 十、Iterators 和 Generators(不推荐)
-不要使用迭代器和生成器，优先使用 JavaScript 中 map 和 reduce 这类高阶函数来代替 for-of 循环
-处理纯函数的返回值更加容易并且没有副作用。但是暂时都不要使用
 
-```
-const numbers = [1, 2, 3, 4, 5];
-// bad
-let sum = 0;
-for (let num of numbers) {
-  sum += num;
-}
-sum === 15;
-
-// good
-let sum = 0;
-numbers.forEach((num) => sum += num);
-sum === 15;
-
-// best (use the functional force)
-const sum = numbers.reduce((total, num) => total + num, 0);
-sum === 15;
-```
-不要使用Iterators 和 generators，它们不太容易转换为 ES5 的语法。
-
-## 十一、属性访问
+## 十、属性访问
 > 使用点 . 操作符来访问属性
 
 ```
