@@ -941,7 +941,7 @@ for(var key of ws){
 
 // not good
 (new Promise(resolve, reject){})
-    .then(cunction(){},function(){})
+    .then(function(){},function(){})
     .then();
 
 // good
